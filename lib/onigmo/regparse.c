@@ -3324,6 +3324,7 @@ fetch_token(OnigToken* tok, UChar** src, UChar* end, ScanEnv* env)
 
     tok->backp = p;
     PFETCH(c);
+		if (p > end) return ONIGERR_PREMATURE_END_OF_CHAR_CLASS;
 
     tok->u.c = c;
     tok->escaped = 1;
