@@ -141,3 +141,13 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
+      
+    - name: export
+      shell: bash
+      run: echo '::set-output name=RUNNER_TEMP::'${RUNNER_TEMP//\\/\\\\}
+      id: runner-temp
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.language }}
+        path: "${{steps.runner-temp.outputs.RUNNER_TEMP}}/codeql_databases/${{ matrix.language }}"
