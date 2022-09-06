@@ -53,9 +53,10 @@ jobs:
     - name: Build Fluent Bit packages
       run: |
         sudo apt-get update && sudo apt-get install -y make cmake flex bison libssl-dev
-        ls
+        echo "cd build"
         cd build
-        cmake --help
+        echo "cmake --version"
+        cmake --version
         export CFLAGS="$CFLAGS -fcommon -DFLB_TESTS_OSSFUZZ=ON"
         export CXXFLAGS="$CXXFLAGS -fcommon -DFLB_TESTS_OSSFUZZ=ON"
 
