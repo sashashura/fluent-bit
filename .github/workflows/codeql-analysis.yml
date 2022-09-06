@@ -53,7 +53,8 @@ jobs:
     - name: Build Fluent Bit packages
       run: |
         sudo apt-get update && sudo apt-get install -y make cmake flex bison libssl-dev
-        echo "cd build"
+        sed -i 's/malloc(/fuzz_malloc(/g' ./lib/msgpack-c/src/zone.c
+        sed -i 's/struct msgpack_zone_chunk {/void *fuzz_malloc(size_t size) {if (size > 0xa00000) return NULL;\nreturn malloc(size);}\nstruct msgpack_zone_chunk {/g' ./lib/msgpack-c/src/zone.c
         cd build
         echo "cmake --version"
         cmake --version
