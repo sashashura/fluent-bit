@@ -54,6 +54,9 @@ jobs:
       run: |
         sudo apt-get update && sudo apt-get install -y make cmake flex bison libssl-dev
         cd build
+        export CFLAGS="$CFLAGS -fcommon -DFLB_TESTS_OSSFUZZ=ON"
+        export CXXFLAGS="$CXXFLAGS -fcommon -DFLB_TESTS_OSSFUZZ=ON"
+
         # Plugins enabled/disabled
 
         INPUT_PLUGINS="-DFLB_IN_COLLECTD=OFF \
