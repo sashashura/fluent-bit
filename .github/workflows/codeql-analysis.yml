@@ -17,7 +17,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       # actions: read
       # contents: read
@@ -52,10 +52,9 @@ jobs:
 
     - name: Build Fluent Bit packages
       run: |
-        cmake -G "NMake Makefiles" -DFLB_NIGHTLY_BUILD='' -DOPENSSL_ROOT_DIR='C:\\Program Files (x86)\\OpenSSL-Win32' ../
-        cmake --build .
-        cpack
-      working-directory: build
+        cd build
+        cmake ..
+        make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
