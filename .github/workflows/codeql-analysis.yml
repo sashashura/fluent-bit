@@ -53,7 +53,7 @@ jobs:
 
     - name: Build Fluent Bit packages
       run: |
-        sudo apt-get update && sudo apt-get install -y make cmake flex bison libssl-dev libyaml-devel
+        sudo apt-get update && sudo apt-get install -y make cmake flex bison libssl-dev libyaml
         cd build
 
         # Plugins enabled/disabled
